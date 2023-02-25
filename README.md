@@ -13,16 +13,16 @@ With digitization and globalization in the era of 5G and beyond, research on hig
 (4) We propose an offlinetraining and online-application paradigm, and the simulation results show that our proposed method significantly outperforms the benchmark schemes in terms of SE, satisfaction and generalization.
 
 ## System Model
-![images](https://github.com/Zhaodimmmm/GEO_Satellite_RA/blob/main/images/System%20Model.png)
+![images](https://github.com/Zhaodimmmm/GEO_Satellite_RA/blob/master/images/System%20Model.png)
 
 ## Algorithm
 ### Solution 1 (MCI-SSL Algorithm)
 We propose a maximum co-channel interference based self-supervised learning [40] (MCI-SSL) method as shown below, and the MCI-SSL algorithm is composed of data collection, network structure design and parameter optimization.
-![images](https://github.com/Zhaodimmmm/GEO_Satellite_RA/blob/main/images/MCI-SSL%20Algorithm.png)
+![images](https://github.com/Zhaodimmmm/GEO_Satellite_RA/blob/master/images/MCI-SSL%20Algorithm.png)
 
 ### Solution 2 (SFR-PPO Algorithm)
 Motivated by the idea of SFR, an improved DRL approach, called SFR-enabled proximal policy optimization (PPO) algorithm (SFR-PPO), is proposed to allocate sub-channels for requesting users.
-![images](https://github.com/Zhaodimmmm/GEO_Satellite_RA/blob/main/images/SFR-PPO%20Algorithm.png)
+![images](https://github.com/Zhaodimmmm/GEO_Satellite_RA/blob/master/images/SFR-PPO%20Algorithm.png)
 
 ## Simulation
 ### Simulation Parameters
