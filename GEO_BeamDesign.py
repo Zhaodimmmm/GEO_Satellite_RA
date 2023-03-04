@@ -168,17 +168,27 @@ if __name__ == "__main__":
     y0 = 0
     x1 = allocate[:, 1]
     y1 = allocate[:, 2]
-    user = np.loadtxt('2001.txt', encoding='utf-8', delimiter=" ")
+    user = np.loadtxt('./BeamAdaptation/non-uniform2.txt', encoding='utf-8', delimiter=" ")
     x2 = user[:, 0]
     y2 = user[:, 1]
+
     fig = plt.figure()
     ax1 = fig.add_subplot(1, 1, 1)
     ax1.scatter(x0, y0, c='r', marker='^')
     ax1.scatter(x1, y1, c='r', marker='x')
     ax1.scatter(x2, y2, c='b', marker='.')
-    threedB = [1.8603, 1.4941, 1.5433, 1.5711, 1.8851, 1.3499, 1.6659, 1.5355, 1.7594, 1.6371, 1.6957, 1.4500]
-    onedB = [0.5370, 0.4313, 0.4455, 0.4535, 0.5442, 0.3897, 0.4809, 0.4432, 0.5079, 0.4726, 0.4895, 0.4186]
-    bigonedB = [0.5370, 0, 0, 0, 0.5442, 0, 0, 0, 0.5079, 0, 0, 0]
+
+    # threedB = [1.6626, 1.5749, 1.6161, 1.6571, 1.6993, 1.4050, 1.7788, 1.6144, 1.4654, 1.7377, 1.8095, 1.5284]
+    # threedB = [1.8603, 1.4941, 1.5433, 1.5711, 1.8851, 1.3499, 1.6659, 1.5355, 1.7594, 1.6371, 1.6957, 1.4500]
+    threedB = [1.5786, 1.4939, 1.5422, 1.5770, 1.6128, 1.9015, 1.6780, 1.5420, 0.0000, 1.8773, 1.9257, 1.4549]
+
+    # print(3578600 * m.tan(m.radians(threedB[4])))
+    # onedB = [0.4800, 0.4546, 0.4665, 0.4784, 0.4905, 0.4056, 0.5135, 0.4660, 0.4230, 0.5016, 0.5224, 0.4412]
+    # onedB = [0.5370, 0.4313, 0.4455, 0.4535, 0.5442, 0.3897, 0.4809, 0.4432, 0.5079, 0.4726, 0.4895, 0.4186]
+    onedB = [0.4557, 0.4313, 0.4452, 0.4552, 0.4656, 0.5489, 0.4844, 0.4452, 0.0000, 0.5419, 0.5559, 0.4200]
+
+    # bigonedB = [0.5370, 0, 0, 0, 0.5442, 0, 0, 0, 0.5079, 0, 0, 0]
+    bigonedB = [0, 0, 0, 0, 0, 0.5489, 0, 0, 0, 0.5419, 0.5559, 0]
 
     for i in range(12):
         cir1 = Circle(xy=(x1[i], y1[i]), radius=35786000 * m.tan(m.radians(onedB[i]))/111000, alpha=0.4)
@@ -187,7 +197,166 @@ if __name__ == "__main__":
         ax1.add_patch(cir2)
         cir3 = Circle(xy=(x1[i], y1[i]), radius=35786000 * m.tan(m.radians(bigonedB[i])) / 111000, alpha=0.7)
         ax1.add_patch(cir3)
-    plt.xlabel("Longitude")
-    plt.ylabel("Latitude")
+
+    cir3 = Circle(xy=(x0, y0), radius=1500000 / 111000, alpha=0.15)
+    ax1.add_patch(cir3)
+
+    font = {'family': 'Times New Roman',
+            'weight': 'normal',
+            'size': '16'}
+    plt.xlabel("Longitude", font)
+    plt.ylabel("Latitude", font)
+    plt.xlim(-18, 18)
+    plt.ylim(-18, 18)
+
+    plt.tick_params(labelsize=12)
+    labels = ax1.get_xticklabels() + ax1.get_yticklabels()
+    [label.set_fontname('Times New Roman') for label in labels]
+
+    plt.text(x=-2.5,  # 文本x轴坐标
+             y=1.3,  # 文本y轴坐标
+             s='B1',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=-4.5,  # 文本x轴坐标
+             y=-4,  # 文本y轴坐标
+             s='B2',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=5.5,  # 文本x轴坐标
+             y=0.75,  # 文本y轴坐标
+             s='B3',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=8.6,  # 文本x轴坐标
+             y=8.6,  # 文本y轴坐标
+             s='B4',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=3.5,  # 文本x轴坐标
+             y=12,  # 文本y轴坐标
+             s='B5',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=-7.2,  # 文本x轴坐标
+             y=9.2,  # 文本y轴坐标
+             s='B6',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=-11.75,  # 文本x轴坐标
+             y=4.8,  # 文本y轴坐标
+             s='B7',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=-13,  # 文本x轴坐标
+             y=-3.3,  # 文本y轴坐标
+             s='B8',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=-6.3,  # 文本x轴坐标
+             y=-14,  # 文本y轴坐标
+             s='B9',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=2.8,  # 文本x轴坐标
+             y=-12.5,  # 文本y轴坐标
+             s='B10',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=9.1,  # 文本x轴坐标
+             y=-11.5,  # 文本y轴坐标
+             s='B11',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
+    plt.text(x=14,  # 文本x轴坐标
+             y=-1.5,  # 文本y轴坐标
+             s='B12',  # 文本内容
+             rotation=1,  # 文字旋转
+             ha='left',  # x=2.2是文字的左端位置，可选'center', 'right', 'left'
+             va='baseline',  # y=8是文字的低端位置，可选'center', 'top', 'bottom', 'baseline', 'center_baseline'
+             fontdict=dict(fontsize=12, color='r',
+                           family='Times New Roman',  # 字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                           weight='normal',  # 磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                           )  # 字体属性设置
+             )
+
     plt.show()
+    # plt.savefig('./uniform.eps', format='eps', dpi=1000)
 
