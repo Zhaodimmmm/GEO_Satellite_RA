@@ -1,0 +1,47 @@
+{
+    "ac_kwargs":	{
+        "hidden_sizes":	[
+            256,
+            512,
+            1024,
+            512,
+            256
+        ]
+    },
+    "actor_critic":	"RA_ActorCritic",
+    "clip_ratio":	0.2,
+    "env_fn":	"satellite_run",
+    "epochs":	500,
+    "exp_name":	"ppo-ra",
+    "gamma":	0.99,
+    "lam":	0.97,
+    "logger":	{
+        "<spinup.utils.logx.EpochLogger object at 0x7f5d1cdbc9e8>":	{
+            "epoch_dict":	{},
+            "exp_name":	"ppo-ra",
+            "first_row":	true,
+            "log_current_row":	{},
+            "log_headers":	[],
+            "output_dir":	"/home/fly/ZD/GEO_Satellite/result/2023-03-02_ppo-ra",
+            "output_file":	{
+                "<_io.TextIOWrapper name='/home/fly/ZD/GEO_Satellite/result/2023-03-02_ppo-ra/progress.txt' mode='w' encoding='UTF-8'>":	{
+                    "mode":	"w"
+                }
+            }
+        }
+    },
+    "logger_kwargs":	{
+        "exp_name":	"ppo-ra",
+        "output_dir":	"/home/fly/ZD/GEO_Satellite/result/2023-03-02_ppo-ra"
+    },
+    "max_ep_len":	50,
+    "pi_lr":	0.0003,
+    "save_freq":	10,
+    "seed":	0,
+    "steps_per_epoch":	200,
+    "target_kl":	0.01,
+    "train_pi_iters":	50,
+    "train_v_iters":	50,
+    "use_cuda":	false,
+    "vf_lr":	0.0001
+}
