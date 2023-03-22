@@ -104,10 +104,9 @@ def userconnectsate(ueposition, epoch, step):
     """
     # seesate为可见星的坐标集合，seesateId为卫星编号+卫星坐标BLH,BeamSeeAlloocate为卫星坐标（BLH）+小区编号+波束中心+卫星坐标（x,y,z）
     seesatenum, SeesateId, beamallocate = seesate(epoch, step)
-    uenum = len(ueposition)
     # 先找可见卫星
     satuedict, Beam, UeLinkSate = [], [], []
-    for i in range(len(beamallocate)):
+    for i in range(len(ueposition)):
         ue , min, link, beam = [], [], [], []
         for j in range(len(beamallocate)):
             uebeamdistance = m.sqrt((beamallocate[j][2][0]-ueposition[i][0])**2+(beamallocate[j][2][1]-ueposition[i][1])**2+(beamallocate[j][2][2]-ueposition[i][2])**2)
